@@ -26,6 +26,5 @@ export function write(s: string): Promise<null> {
 }
 
 export function read(): Promise<string> {
-  let promise = Stockfish.read();
-  return promise;
+  return Stockfish.read();
 }

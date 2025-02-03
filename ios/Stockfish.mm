@@ -3,6 +3,7 @@
 @implementation StockfishRN
 {
     bool hasListeners;
+    bool isInit;
     stockfish::EngineBridge * _engineBridge;   
 }
 
@@ -40,6 +41,7 @@
 
 -(id)init {
     _engineBridge = new stockfish::EngineBridge();
+    isInit = NO;
     return self;
 }
 
@@ -71,7 +73,11 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(init: (RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    _engineBridge->init();
+    if (!isInit)
+    {
+        _engineBridge->init();
+        isInit = YES;
+    }   
 }
 
 RCT_EXPORT_METHOD(write:(NSString*)s

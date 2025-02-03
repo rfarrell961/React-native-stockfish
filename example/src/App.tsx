@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text, Button, TextInput, NativeEventEmitter, NativeModules } from 'react-native';
+import { StyleSheet, View, Text, Button, TextInput, NativeEventEmitter, NativeModules, Alert } from 'react-native';
 import { init, write, read } from 'react-native-stockfish';
 
 const { StockfishRN } = NativeModules;
