@@ -20,14 +20,14 @@
 
 // Will be called when this module's first listener is added.
 -(void)startObserving {
-    NSLog(@"Start Observing");
+    //NSLog(@"Start Observing");
     hasListeners = YES;
     // Set up any upstream listeners or background tasks as necessary
 }
 
 // Will be called when this module's last listener is removed, or on dealloc.
 -(void)stopObserving {
-    NSLog(@"STOP observing");
+    //NSLog(@"STOP observing");
     hasListeners = NO;
     // Remove upstream listeners, stop unnecessary background tasks
 }
@@ -57,7 +57,7 @@
 }
 
 -(void)dealloc {
-    puts("De-allocating EngineBridge.");
+    //puts("De-allocating EngineBridge.");
     delete _engineBridge;
 }
 
@@ -84,7 +84,7 @@ RCT_EXPORT_METHOD(write:(NSString*)s
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    NSLog(@"Writing");
+    //NSLog(@"Writing");
     std::string value([s UTF8String]);
     _engineBridge->stockfish_write(value);
 }
