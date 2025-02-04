@@ -33,7 +33,7 @@ namespace stockfish {
 
 	void EngineBridge::engine_response_received(std::string data)
 	{
-		response = response + data;
+		response = response + "\r\n" + data;
 		triggerReactEventFromCpp(data.c_str());
 	}
 
