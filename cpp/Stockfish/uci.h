@@ -57,6 +57,7 @@ class UCIEngine {
     auto& engine_options() { return engine.get_options(); }
 
    private:
+    bool busy;
     Engine      engine;
     CommandLine cli;
 

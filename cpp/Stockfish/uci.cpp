@@ -55,7 +55,8 @@ overload(Ts...) -> overload<Ts...>;
 
 UCIEngine::UCIEngine(int argc, char** argv) :
     engine(argv[0]),
-    cli(argc, argv){
+    cli(argc, argv),
+    busy(false){
 
     auto& options = engine.get_options();
 
@@ -96,6 +97,11 @@ UCIEngine::UCIEngine(int argc, char** argv) :
 }
 
 void UCIEngine::write(std::string cmd) {
+
+    if (busy)
+        return;
+    
+    busy = true;
 
     std::string token;
        
@@ -169,6 +175,8 @@ void UCIEngine::write(std::string cmd) {
         ss << "Unknown command: '" << cmd << "'. Type help for more information.";
         UCIEngine::sendResponse (ss.str());
     }
+
+    busy = false;
 }
 
 Search::LimitsType UCIEngine::parse_limits(std::istream& is) {
